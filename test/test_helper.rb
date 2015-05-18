@@ -22,18 +22,18 @@ def gem_list_output(installed_gems)
   result.join("\n")
 end
 
-def mocked_shellout(stdout: "", stderr: "", error: false, exitstatus: 0)
+def mocked_shellout(options = {})
   result = mock.stubs(:run_command)
 
-  if error
+  if options[:error]
     result.stubs(:error!).raises(Mixlib::ShellOut::ShellCommandFailed)
   else
     result.stubs(:error!).returns(false)
   end
 
-  result.stubs(:stderr).returns(stderr)
-  result.stubs(:stdout).returns(stdout)
-  result.stubs(:exitstatus).returns(exitstatus)
+  result.stubs(:stderr).returns(options[:stderr] || "")
+  result.stubs(:stdout).returns(options[:stdout] || "")
+  result.stubs(:exitstatus).returns(options[:exitstatus] || "")
 
   result
 end
