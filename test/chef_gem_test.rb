@@ -42,6 +42,7 @@ describe TestKitchenChefMinitestMatchers::ChefGem do
       fake_install_chef_gems(TEST_GEM_NAME => @installed_gem_versions)
     end
 
+    focus
     it "finds an installed gem" do
       assert_chef_gem_installed(TEST_GEM_NAME)
     end

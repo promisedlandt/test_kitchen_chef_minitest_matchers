@@ -1,8 +1,8 @@
 module Minitest
   module Assertions
-    def assert_chef_gem_installed(gem_name, version_requirements = nil, options = {})
-      if options[:msg]
-        message = options[:msg]
+    def assert_chef_gem_installed(gem_name, version_requirements = nil, msg: nil)
+      if msg
+        message = msg
       else
         message = "Expected #{ gem_name } to be installed but it is not"
         message += ", version requirements: #{ version_requirements }" if version_requirements
@@ -11,9 +11,9 @@ module Minitest
       assert TestKitchenChefMinitestMatchers::ChefGem.chef_gem_installed?(gem_name, version_requirements), message
     end
 
-    def refute_chef_gem_installed(gem_name, version_requirements = nil, options = {})
-      if options[:msg]
-        message = options[:msg]
+    def refute_chef_gem_installed(gem_name, version_requirements = nil, msg: nil)
+      if msg
+        message = msg
       else
         message = "Expected #{ gem_name } not to be installed but it is"
         message += ", version requirements: #{ version_requirements }" if version_requirements
